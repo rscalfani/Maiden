@@ -9,8 +9,9 @@
 
     <!-- Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/logIn.css" rel="stylesheet">
+    <link href="../css/login.css" rel="stylesheet">
 
+	<script data-main="../js/main" src="../js/require.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/maiden.js"></script>
@@ -20,17 +21,17 @@
 <body>
 
 <div id="container" class="container">
-
-    <form class="form-signin" action="/login" method="post">
-        <h2 class="form-signin-heading">Sign into Maiden</h2>
+    <form class="form-login" action="/login" method="post">
+        <h2 class="form-login-heading">Sign into Maiden</h2>
         <input id="email" name="email" type="text" class="input-block-level" placeholder="email">
         <label class="checkbox">
-            <input name="checkbox" type="checkbox" value="remember-me"> Remember me
+            <input id="remember-me" name="remember-me" type="checkbox"> Remember me
         </label>
         <input id="password" name="password" type="password" class="input-block-level" placeholder="password">
         <a href="" class="forgot-password">forgot password?</a>
         <button id="login" class="btn btn-large btn-primary" type="submit">Login</button>
 		<a href="signUp.html" class="sign-up">sign up</a>
+		<span id="required" style="color:red; display:none">&bull; please fill in all fields</span>
     </form>
 </div>
 
