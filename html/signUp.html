@@ -11,17 +11,16 @@
 	<link href="../css/bootstrap.min.css" rel="stylesheet">
 	<link href="../css/signUp.css" rel="stylesheet">
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+	<script data-main="../js/main" src="../js/require.js"></script>
+	<script src="../js/jquery.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../js/maiden.js"></script>
-	<script src="../js/signUp.js"></script>
 
 </head>
 
 <body>
 
 <div id="container" class="container">
-
 	<form class="form-signup" action="/join" method="post">
 		<h2 class="form-signup-heading">Sign Up</h2>
 		<label>* required fields</label>
@@ -29,12 +28,13 @@
 		<input id="middleName" name="middleName" type="text" class="input-block-level" placeholder="middle name">
 		<input id="lastName" name="lastName" type="text" class="input-block-level" placeholder="* last name">
 		<input id="email" name="email" type="text" class="input-block-level" placeholder="* email">
-		<span id="exists" style="color:red ; display:none">email already exists</span>
+		<span id="exists" style="display:none" class="error">email already exists</span>
 		<input id="password" name="password" type="password" class="input-block-level" placeholder="* password">
 		<input id="confirm" type="password" class="input-block-level" placeholder="* confirm password">
-		<span id="match" style="color:red; display:none">password and confirmed password must match</span>
+		<span id="match" style="display:none" class="error">password and confirmed password must match</span>
 		<button id="join" class="btn btn-large btn-primary" type="submit">Join</button>
-		<span id="required" style="color:red; display:none">&bull; please fill in all required fields</span>
+		<span id="required" style="display:none" class="error">&bull; please fill in all required fields</span>
+		<div id="errors"></div>
 	</form>
 </div>
 
