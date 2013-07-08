@@ -16,8 +16,6 @@ body {
 }
 .form-signup .form-signup-heading {
 	margin-bottom: 0px;
-}
-.form-signup .form-signup-heading {
 	text-align: center;
 }
 .form-signup input[type="text"],
@@ -25,9 +23,8 @@ body {
 	font-size: 16px;
 	height: auto;
 }
-.forgot-password {
-	display: block;
-	margin-bottom: 7px;
+.error {
+	color:red;
 }
 #join {
 	display: block;
