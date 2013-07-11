@@ -15,18 +15,20 @@ define(function(require) {
 						{
 							var paramValue = params[key];
 							var paramValidation = validationDef[key];
-							if (paramValidation != null)
+							// optional parameters can be blank
+							if (paramValidation.optional == true && paramValue == '')
+								return;
+							// check regex
+							if (paramValidation.regex)
 							{
-								// optional parameters can be blank
-								if (paramValidation.optional == true && paramValue == '')
-									return;
-								// check regex
-								if (paramValidation.regex && !paramValue.match(paramValidation.regex))
+								if (!paramValue.match(new RegExp('^' + paramValidation.regex.source + '$', 'i')))
 									pushError(key, 'is invalid');
 							}
+							else
+								pushError(key, 'is missing regex in validation');
 						}
 						// otherwise make sure parameter is optional
-						else if (validationDef[key] == null || validationDef[key].optional !== true)
+						else if (!validationDef[key].optional)
 							pushError(key, 'is missing');
 					});
 					// check for parameters that aren't specified in validation
@@ -40,10 +42,12 @@ define(function(require) {
 			return validator;
 		},
 		regexes: {
-			email: /^[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-			name: /[A-Z]/ig,
-			lastName: /[A-Z' ]/ig,
-			anything: /.+/ig
+			email: /[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/,
+			name: /[A-Z]+/,
+			lastName: /[A-Z' ]+/,
+			anything: /.+/,
+			uuid: /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/,
+			checkbox: /on|off/
 		}
 	};
 	return validation;
