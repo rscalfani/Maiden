@@ -1,30 +1,47 @@
 define(function(require) {
-	var formHelper = require('formHelper');
-	var formHelp = formHelper.newFormHelp();
+	var formHelper = require('formHelper').newFormHelper();
 	var validation = require('validation');
 	var validator = validation.newValidator();
 	var $ = require('jquery');
 
 	$(function() {
+		var formErrors = {};
+
 		$('#login').click(function() {
 			var validationDef = {
 				email: {
 					regex: validation.regexes.email
 				},
-				'remember-me': null,
-				password: null
+				'remember-me': {
+					regex: validation.regexes.checkbox
+				},
+				password: {
+					regex: validation.regexes.anything
+				}
 			}
-			var errors = validator.validate(formHelp.getFormData($('.form-login')), validationDef);
+//			var errors = validator.validate(formHelper.getFormData($('.form-login')), validationDef);
+//			if (errors)
+//			{
+//				console.log(errors);
+////				$('#required').show();
+//				return false;
+//			}
+//			else
+//				console.log(errors);
+////				$('#required').hide();
+			$('#errors').empty();
+			var errors = validator.validate(formHelper.getFormData($('.form-login')), validationDef);
 			if (errors)
 			{
-				console.log(errors);
-//				$('#required').show();
-				return false;
+				formErrors.validationErr = null;
+				formHelper.displayErrors(errors, 'errors');
 			}
 			else
-				console.log(errors);
-//				$('#required').hide();
-			return false; // TODO remove this after testing
+				delete formErrors.validationErr;
+			if (Object.keys(formErrors).length == 0)
+				return true;
+			else
+				return false;
 		});
 	});
 });
