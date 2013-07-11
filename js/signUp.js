@@ -1,6 +1,5 @@
 define(function(require) {
-	var formHelper = require('formHelper');
-	var formHelp = formHelper.newFormHelp();
+	var formHelper = require('formHelper').newFormHelper();
 	var validation = require('validation');
 	var validator = validation.newValidator();
 	var $ = require('jquery');
@@ -35,17 +34,22 @@ define(function(require) {
 				lastName: {
 					regex: validation.regexes.lastName
 				},
-				password: null,
-				confirm: null
+				password: {
+					regex: validation.regexes.anything
+				},
+				confirm: {
+					regex: validation.regexes.anything
+				}
 			};
 			$('#errors').empty();
-			var errors = validator.validate(formHelp.getFormData($('.form-signup')), validationDef);
+			var errors = validator.validate(formHelper.getFormData($('.form-signup')), validationDef);
 			if (errors)
 			{
 				formErrors.validationErr = null;
-				errors.forEach(function(error) {
-					$('#errors').append('<span class="error">&bull;' + ' ' + error + '<br>' + '</span>');
-				});
+//				errors.forEach(function(error) {
+//					$('#errors').append('<span class="error">&bull;' + ' ' + error + '<br>' + '</span>');
+//				});
+				formHelper.displayErrors(errors, 'errors');
 			}
 			else
 				delete formErrors.validationErr;
