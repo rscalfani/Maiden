@@ -9,17 +9,6 @@ define(function(require) {
 		var formErrors = {};
 
 		$('#join').click(function() {
-//			var fields = ['firstName', 'lastName', 'email', 'password', 'confirmPassword'];
-//			if (fields.some(function(id) {
-//				return $('#' + id).val() == ''
-//			}))
-//			{
-//				$('#required').show();
-//				return false;
-//			}
-//			else
-//				$('#required').hide();
-
 			var validationDef = {
 				email: {
 					regex: validation.regexes.email
@@ -46,9 +35,6 @@ define(function(require) {
 			if (errors)
 			{
 				formErrors.validationErr = null;
-//				errors.forEach(function(error) {
-//					$('#errors').append('<span class="error">&bull;' + ' ' + error + '<br>' + '</span>');
-//				});
 				formHelper.displayErrors(errors, 'errors');
 			}
 			else
@@ -77,8 +63,8 @@ define(function(require) {
 				if (res.error)
 					console.log(res.error);
 			})
-			.fail(function(jqxhr, textStatus, error ) {
-				console.log('ajax failure:', jqxhr, textStatus, error )
+			.fail(function(jqxhr, textStatus, error) {
+				console.error('ajax failure:', jqxhr, textStatus, error);
 			});
 		});
 

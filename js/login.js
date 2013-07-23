@@ -19,16 +19,6 @@ define(function(require) {
 					regex: validation.regexes.anything
 				}
 			}
-//			var errors = validator.validate(formHelper.getFormData($('.form-login')), validationDef);
-//			if (errors)
-//			{
-//				console.log(errors);
-////				$('#required').show();
-//				return false;
-//			}
-//			else
-//				console.log(errors);
-////				$('#required').hide();
 			$('#errors').empty();
 			var errors = validator.validate(formHelper.getFormData($('.form-login')), validationDef);
 			if (errors)

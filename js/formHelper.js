@@ -7,7 +7,7 @@ define(function(require) {
 					form.find('input').each(function(index, item) {
 						var id = $(item).attr('id');
 						if ($(item).attr('type') == 'checkbox')
-							data[id] = $(item).is(':on') ? 'on' : 'off';
+							data[id] = $(item).is(':checked') ? 'on' : 'off';
 						else
 						{
 						var val = $('#' + id).val();
