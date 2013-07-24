@@ -9,9 +9,8 @@ require.config({
 	},
 	baseUrl: '..',
 	paths: {
-		bootstrap: 'js/bootstrap',
 		formHelper: 'js/formHelper',
-		jquery: 'js/jquery.min',
+		jquery: 'bower_components/jquery/jquery',
 		login: 'js/login',
 		signUp: 'js/signUp',
 		validation: 'js/validation',
@@ -19,12 +18,12 @@ require.config({
 		'node-uuid': 'bower_components/node-uuid/uuid',
 		loginView: 'views/login/loginView',
 		text: 'js/text',
-		underscore: 'js/underscore',
-		less: 'js/less'
+		underscore: 'bower_components/underscore-amd/underscore',
+		less: 'bower_components/less.js/dist/less-1.4.2'
 	}
 });
 // TODO remove this hack when we are a single page app
-require([ 'bootstrap', 'jquery', 'loginView', 'less'], function(bootstrap, $, loginView, less) {
+require([ 'jquery', 'loginView', 'less'], function($, loginView, less) {
 	// put into document
 	loginView.display();
 });
