@@ -1,5 +1,4 @@
 define(function(require) {
-
 	var $ = require('jquery');
 	var formHelper = require('formHelper').newFormHelper();
 	var loginHtml = require('text!views/login/login.html');
@@ -36,6 +35,7 @@ define(function(require) {
 				$(window).resize(loginView.center);
 
 				var formErrors = {};
+
 				$('#login').click(function() {
 					var validationDef = {
 						email: {
@@ -60,6 +60,7 @@ define(function(require) {
 						delete formErrors.validationErr;
 					if (Object.keys(formErrors).length == 0)
 					{
+						formData = formHelper.getFormData($('.form-signup'), true);
 						$.post('/login', formData)
 						.done(function(res) {
 							loginView.destroy();
