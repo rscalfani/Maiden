@@ -2,16 +2,18 @@ define(function(require) {
 	var formHelper = {
 		newFormHelper: function() {
 			var helper = {
-				getFormData: function(form) {
+				getFormData: function(form, postable) {
+					postable = postable || false;
+					var search = postable ? 'input[name]' : 'input';
 					var data = {};
-					form.find('input').each(function(index, item) {
+					form.find(search).each(function(index, item) {
 						var id = $(item).attr('id');
 						if ($(item).attr('type') == 'checkbox')
 							data[id] = $(item).is(':checked') ? 'on' : 'off';
 						else
 						{
 						var val = $('#' + id).val();
-						if (val != '')
+						if (val != '' || postable)
 							data[id] = val;
 						}
 					});
